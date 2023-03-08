@@ -31,18 +31,19 @@ def save():
         if Path(TOKEN).exists():
             selection = pick(options=["Yes", "No"], title="Overwrite Existing")
             if selection[0] == "No":
-                vprint("[yellow]Exit: No Overwrite[/yellow]")
-                exit()
-        with open(TOKEN, "w") as token:
-            token.write(api_token)
-        token.close()
-        vprint("[green]Token Saved[/green]")
+                vprint("[yellow]No Overwrite[/yellow]")
+        else:
+            with open(TOKEN, "w") as token:
+                token.write(api_token)
+            token.close()
+            vprint("[green]Token Saved[/green]")
     elif code == "TokenMalformed":
+        vprint("[red]API Token Malformed[/red]")
+    elif code == "TokenInvalid":
         vprint("[red]API Token Invalid[/red]")
-        exit()
     else:
+        print(code)
         vprint("[red]Unidentified Error[/red]")
-        exit()
 
 
 @token.command()
