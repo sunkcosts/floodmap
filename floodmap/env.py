@@ -4,6 +4,7 @@ from pydantic import BaseModel
 # Local
 HOME = Path.home()
 CACHE = HOME / ".floodmap"
+TOKEN = f"{CACHE}/mapbox"
 
 # Web
 class Endpoint(BaseModel):
