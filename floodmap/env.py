@@ -11,3 +11,6 @@ class Endpoint(BaseModel):
 
     def tokens(self, key: str) -> str:
         return f"{self.base}/tokens/v2?access_token={key}"
+
+
+ENDPOINT = Endpoint()
