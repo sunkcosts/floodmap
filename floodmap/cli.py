@@ -12,7 +12,7 @@ def entry():
     pass
 
 
-@click.groupd()
+@entry.group()
 def token():
     pass
 
