@@ -10,5 +10,5 @@ def entry():
 @entry.command()
 def configure():
     clear()
-    vprint("[green]Please enter your mapbox API token below.[/green]")
-    api_token = str(input("❯"))
+    vprint("[green]Mapbox API Key[/green]")
+    api_token = str(input("❯ "))
