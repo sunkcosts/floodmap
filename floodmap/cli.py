@@ -1,4 +1,5 @@
 import click
+from floodmap.term import vprint
 
 
 @click.group()
@@ -8,4 +9,4 @@ def entry():
 
 @entry.command()
 def configure():
-    pass
+    vprint("[green]Please enter your mapbox API token below.[\green]")
