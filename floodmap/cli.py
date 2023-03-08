@@ -1,4 +1,6 @@
+import os
 import click
+import subprocess
 import requests
 from pick import pick
 from pathlib import Path
@@ -36,7 +38,7 @@ def save():
         token.close()
         vprint("[green]Token Saved[/green]")
     elif code == "TokenMalformed":
-        vprint("[red]API Key Invalid[/red]")
+        vprint("[red]API Token Invalid[/red]")
         exit()
     else:
         vprint("[red]Unidentified Error[/red]")
@@ -45,14 +47,33 @@ def save():
 
 @token.command()
 def view():
+    clear()
+    vprint("[blue]Mapbox API Token[/blue]")
     if Path(TOKEN).exists():
         with open(TOKEN, "r") as token:
             api_token = token.read().split("\n")[0]
-            vprint(f"[blue]{api_token}[/blue]")
+            vprint(f"[green]{api_token}[/green]")
+    else:
+        vprint(f"[yellow]No Token Available[\yellow]")
+
+
+@token.command()
+def copy():
+    clear()
+    if Path(TOKEN).exists():
+        with open(TOKEN, "r") as token:
+            api_token = token.read().split("\n")[0]
+        token.close()
+        subprocess.run("pbcopy", text=True, input=api_token)
+        vprint(f"[green]Token Copied[/green]")
     else:
         vprint(f"[yellow]No Token Available[\yellow]")
 
 
 @token.command()
 def delete():
-    pass
+    clear()
+    if Path(TOKEN).exists():
+        os.remove(TOKEN)
+    else:
+        vprint(f"[yellow]No Token Available[\yellow]")
