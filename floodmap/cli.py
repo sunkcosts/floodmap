@@ -21,8 +21,8 @@ def token():
 
 @token.command()
 def save():
-    make_cache()
     clear()
+    make_cache()
     vprint("[blue]Mapbox API Token[/blue]")
     api_token = str(input("❯ "))
     resp = requests.get(ENDPOINT.tokens(api_token))
@@ -47,19 +47,16 @@ def save():
 
 @token.command()
 def view():
-    clear()
-    vprint("[blue]Mapbox API Token[/blue]")
     if Path(TOKEN).exists():
         with open(TOKEN, "r") as token:
             api_token = token.read().split("\n")[0]
-            vprint(f"[green]{api_token}[/green]")
+            vprint(f"[blue]{api_token}[/blue]")
     else:
         vprint(f"[yellow]No Token Available[/yellow]")
 
 
 @token.command()
 def copy():
-    clear()
     if Path(TOKEN).exists():
         with open(TOKEN, "r") as token:
             api_token = token.read().split("\n")[0]
@@ -72,7 +69,6 @@ def copy():
 
 @token.command()
 def delete():
-    clear()
     if Path(TOKEN).exists():
         os.remove(TOKEN)
         vprint("[green]Token Deleted[/green]")
