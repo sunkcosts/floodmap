@@ -24,12 +24,12 @@ def save():
     clear()
     make_cache()
     vprint("[blue]Mapbox API Token[/blue]")
-    api_token = str(input("❯ "))
+    api_token = str(input("> "))
     resp = requests.get(ENDPOINT.tokens(api_token))
     code = resp.json()["code"]
     if code == "TokenValid":
         if Path(TOKEN).exists():
-            selection = pick(options=["Yes", "No"], title="Overwrite Existing")
+            selection = pick(options=["Yes", "No"], title="Overwrite Existing?")
             if selection[0] == "No":
                 vprint("[yellow]No Overwrite[/yellow]")
         else:
