@@ -9,4 +9,4 @@ def entry():
 
 @entry.command()
 def configure():
-    vprint("[green]Please enter your mapbox API token below.[/green]")
+    vprint("\n[green]Please enter your mapbox API token below.[/green]")
