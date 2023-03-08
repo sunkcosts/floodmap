@@ -54,7 +54,7 @@ def view():
             api_token = token.read().split("\n")[0]
             vprint(f"[green]{api_token}[/green]")
     else:
-        vprint(f"[yellow]No Token Available[\yellow]")
+        vprint(f"[yellow]No Token Available[/yellow]")
 
 
 @token.command()
@@ -67,7 +67,7 @@ def copy():
         subprocess.run("pbcopy", text=True, input=api_token)
         vprint(f"[green]Token Copied[/green]")
     else:
-        vprint(f"[yellow]No Token Available[\yellow]")
+        vprint(f"[yellow]No Token Available[/yellow]")
 
 
 @token.command()
@@ -75,5 +75,6 @@ def delete():
     clear()
     if Path(TOKEN).exists():
         os.remove(TOKEN)
+        vprint("[green]Token Deleted[/green]")
     else:
-        vprint(f"[yellow]No Token Available[\yellow]")
+        vprint(f"[yellow]No Token Available[/yellow]")
